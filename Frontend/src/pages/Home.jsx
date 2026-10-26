@@ -1,7 +1,10 @@
 import MovieCard from "../components/MovieCard.jsx"
+import {useState} from "react"
 
 
 function Home(){
+
+    const [searchQuery, setSearchQuery] = useState("");
 
     const movies =[
         {id: 1, title: "The Matrix", release_date: "1999-03-31",url: "https://example.com/matrix.jpg"},
@@ -11,6 +14,7 @@ function Home(){
     ]
 
     const handleSubmit = () => {
+        alert(`Searching for: ${searchQuery}`);
     }
 
 
@@ -21,6 +25,8 @@ function Home(){
             type="text"
             placeholder="Search for movies..."
             className="search-input"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
           />
           <button type="submit" className="search-button">
             Search
@@ -29,7 +35,7 @@ function Home(){
 
         <div className="movies-grid">
           {movies.map((movie) => (
-            <MovieCard movie={movie} key={movie.id} />
+           movie.title.toLocaleLowerCase().startsWith(searchQuery) && <MovieCard movie={movie} key={movie.id} />
           ))}
         </div>
       </div>
