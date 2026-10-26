@@ -10,14 +10,30 @@ function Home(){
         {id: 4, title: "The Matrix 4", release_date: "2003-11-05",url: "https://example.com/matrix4.jpg"}
     ]
 
+    const handleSubmit = () => {
+    }
 
-    return <div className="Home">
+
+    return (
+      <div className="Home">
+        <form onSubmit={handleSubmit} className="search-form">
+          <input
+            type="text"
+            placeholder="Search for movies..."
+            className="search-input"
+          />
+          <button type="submit" className="search-button">
+            Search
+          </button>
+        </form>
+
         <div className="movies-grid">
-            {movies.map(movie => (
-                <MovieCard movie={movie} key={movie.id} />
-            ))}
+          {movies.map((movie) => (
+            <MovieCard movie={movie} key={movie.id} />
+          ))}
         </div>
-    </div>
+      </div>
+    );
 
     
 }
